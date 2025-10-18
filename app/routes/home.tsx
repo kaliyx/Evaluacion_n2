@@ -1,10 +1,11 @@
 import type { Route } from "./+types/home";
 import HomeLayout from "../../components/layouts/home/HomeLayout";
+import { portfolio } from "../data/portfolio";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Portafolio" },
-    { name: "description", content: "Portafolio y proyectos" },
+    { title: `Portafolio de ${portfolio.name}` },
+    { name: "description", content: `${portfolio.role} — ${portfolio.bio}` },
   ];
 }
 

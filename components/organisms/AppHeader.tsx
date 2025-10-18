@@ -1,4 +1,5 @@
 import { Layout, Menu } from 'antd';
+import { Link } from 'react-router';
 import { PortfolioStyles } from '../layouts/home/styles';
 import { portfolio } from '../../app/data/portfolio';
 
@@ -9,7 +10,10 @@ const AppHeader = () => (
     <Menu
       mode="horizontal"
       selectable={false}
-      items={portfolio.nav.map((item) => ({ key: item.key, label: <a href={item.href}>{item.label}</a> }))}
+      items={portfolio.nav.map((item) => ({ 
+        key: item.key, 
+        label: <Link to={item.href}>{item.label}</Link> 
+      }))}
     />
   </Header>
 );
