@@ -1,4 +1,4 @@
-import { Typography, Space, Avatar, Row, Col, Card, Tag, Divider, Tooltip, Dropdown, Button } from 'antd';
+import { Typography, Space, Avatar, Row, Col, Card, Tag, Divider, Tooltip, Dropdown, Button, Collapse } from 'antd';
 import { MessageOutlined, TeamOutlined, SearchOutlined, CalendarOutlined, SyncOutlined, BulbOutlined, SafetyCertificateOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { GithubOutlined, LinkedinOutlined, GlobalOutlined, MailOutlined, TwitterOutlined } from '@ant-design/icons';
 import SocialIconLink from '../atoms/SocialIconLink';
@@ -9,15 +9,32 @@ const { Title, Paragraph, Text } = Typography;
 
 
 
-const skills = [
-  { label: 'Comunicación', icon: <MessageOutlined />, color: 'geekblue' },
-  { label: 'Colaboración', icon: <TeamOutlined />, color: 'cyan' },
-  { label: 'Análisis', icon: <SearchOutlined />, color: 'purple' },
-  { label: 'Organización', icon: <CalendarOutlined />, color: 'magenta' },
-  { label: 'Adaptabilidad', icon: <SyncOutlined />, color: 'gold' },
-  { label: 'Creatividad', icon: <BulbOutlined />, color: 'lime' },
-  { label: 'Responsabilidad', icon: <SafetyCertificateOutlined />, color: 'volcano' },
-  { label: 'Proactividad', icon: <ThunderboltOutlined />, color: 'orange' },
+const habilidades = [
+  {
+    categoria: 'Lenguajes',
+    color: '#636363ff',
+    items: ['HTML', 'CSS', 'JavaScript', 'Python', 'SQL', 'Kotlin'],
+  },
+  {
+    categoria: 'IDE',
+    color: '#636363ff',
+    items: ['Visual Studio Code', 'IntelliJ IDEA', 'NetBeans', 'Android Studio', ],
+  },
+  {
+    categoria: 'Control de versiones',
+    color: '#636363ff',
+    items: ['Git', 'GitHub'],
+  },
+  {
+    categoria: 'Bases de datos',
+    color: '#636363ff',
+    items: ['MySQL', 'Oracle SQL Developer'],
+  },
+  {
+    categoria: 'Desarrollo web',
+    color: '#636363ff',
+    items: ['NodeJS', 'Spring Boot'],
+  },
 ];
 
 const HeroSection = () => (
@@ -60,28 +77,25 @@ const HeroSection = () => (
           </Space>
         </Space>
       </Col>
-      <Col xs={24} md={8}>
-        <Card bordered style={{ minHeight: 260, boxShadow: '0 2px 8px #f0f1f2', borderRadius: 12 }}>
-          <Divider orientation="center" style={{ fontWeight: 600, fontSize: 18, marginBottom: 24 }}>Skills</Divider>
-          <div style={{ width: '100%', textAlign: 'center', paddingBottom: 8 }}>
-            <Space
-              direction="horizontal"
-              size={16}
-              style={{ justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}
-              className="skills-list"
-            >
-              {[...new Map(skills.map(s => [s.icon.type.displayName || s.icon.type.name, s])).values()].map(skill => (
-                <Tag
-                  key={skill.label}
-                  color={skill.color}
-                  style={{ fontSize: 16, padding: '6px 18px', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}
-                  icon={skill.icon}
-                >
-                  {skill.label}
-                </Tag>
-              ))}
-            </Space>
-          </div>
+      <Col xs={24} md={8} style={{ display: 'flex', justifyContent: 'flex-start' }}>
+  <Card bordered style={{ minHeight: 260, boxShadow: '0 2px 8px #f0f1f2', borderRadius: 12, marginLeft: 16, width: 320 }}>
+          <Divider orientation="center" style={{ fontWeight: 600, fontSize: 18, marginBottom: 24 }}>Habilidades</Divider>
+          <Collapse
+            accordion
+            style={{ background: 'transparent' }}
+            items={habilidades.map(grupo => ({
+              key: grupo.categoria,
+              label: <span style={{ color: grupo.color, fontWeight: 600, fontSize: 16 }}>{grupo.categoria}</span>,
+              children: (
+                <ul style={{ margin: '8px 0 0 16px', padding: 0 }}>
+                  {grupo.items.map(item => (
+                    <li key={item} style={{ fontSize: 15, lineHeight: '1.7', color: grupo.color }}>{item}</li>
+                  ))}
+                </ul>
+              ),
+              style: { background: grupo.color + '22', borderRadius: 8, marginBottom: 8 }
+            }))}
+          />
         </Card>
       </Col>
     </Row>

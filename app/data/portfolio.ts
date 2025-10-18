@@ -7,7 +7,7 @@ export type SocialLink = {
 export type Project = {
   title: string;
   description: string;
-  applied: string[];
+  tags: string[];
   imageUrl: string;
   liveUrl?: string;
   repoUrl?: string;
@@ -42,15 +42,15 @@ export const portfolio: Portfolio = {
   ],
   projects: [
     {
-      title: 'HUERTOHOGAR',
+      title: 'HUERTO&HOGAR',
       description: 'Diseño de pagina web para venta de productos de frutas, verduras y productos naturales.',
-      applied: ['CSS', 'JS', 'HTML'],
+      tags: ['CSS', 'JS', 'HTML'],
       imageUrl: 'https://picsum.photos/seed/exp1/800/600',
     },
     {
       title: 'UrbanShop',
       description: 'Desarrollo de una plataforma para Android de comercio electrónico para la venta de ropa urbana.',
-      applied: ['React', 'Node.js', 'MongoDB'],
+      tags: ['React', 'Node.js', 'MongoDB'],
       imageUrl: 'https://picsum.photos/seed/exp2/800/600',
     },
   ],
