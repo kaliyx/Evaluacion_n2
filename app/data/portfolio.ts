@@ -7,7 +7,7 @@ export type SocialLink = {
 export type Project = {
   title: string;
   description: string;
-  tags: string[];
+  applied: string[];
   imageUrl: string;
   liveUrl?: string;
   repoUrl?: string;
@@ -42,22 +42,22 @@ export const portfolio: Portfolio = {
   ],
   projects: [
     {
-      title: 'Contador en 21Inmobiliaria',
-      description: 'Experiencia laboral desempeñando funciones contables en el sector inmobiliario.',
-      tags: ['Contabilidad', 'Gestión', 'Excel'],
+      title: 'HUERTOHOGAR',
+      description: 'Diseño de pagina web para venta de productos de frutas, verduras y productos naturales.',
+      applied: ['CSS', 'JS', 'HTML'],
       imageUrl: 'https://picsum.photos/seed/exp1/800/600',
     },
     {
-      title: 'Contador en Legalcont SPA',
-      description: 'Responsabilidades contables y administrativas en entorno PyME.',
-      tags: ['Contabilidad', 'Administración', 'Trabajo en equipo'],
+      title: 'UrbanShop',
+      description: 'Desarrollo de una plataforma para Android de comercio electrónico para la venta de ropa urbana.',
+      applied: ['React', 'Node.js', 'MongoDB'],
       imageUrl: 'https://picsum.photos/seed/exp2/800/600',
     },
   ],
   nav: [
     { key: 'inicio', label: 'Inicio', href: '/' },
     { key: 'proyectos', label: 'Proyectos', href: '/proyectos' },
-    { key: 'sobre-mi', label: 'Sobre Mi', href: '/sobre-mi' },
+    { key: 'sobre-mi', label: 'Sobre mí', href: '/sobre-mi' },
     { key: 'contacto', label: 'Contacto', href: '/contacto' },
   ],
 };
