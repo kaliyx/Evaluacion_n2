@@ -13,6 +13,12 @@ export type Project = {
   repoUrl?: string;
 };
 
+export type WorkExperience = {
+  title: string;
+  description: string;
+  tags: string[];
+};
+
 export type NavItem = {
   key: string;
   label: string;
@@ -26,6 +32,7 @@ export type Portfolio = {
   avatarUrl?: string;
   socials: SocialLink[];
   projects: Project[];
+  workExperience: WorkExperience[];
   nav: NavItem[];
 };
 
@@ -42,16 +49,34 @@ export const portfolio: Portfolio = {
   ],
   projects: [
     {
-      title: 'HUERTO&HOGAR',
-      description: 'Diseño de pagina web para venta de productos de frutas, verduras y productos naturales.',
-      tags: ['CSS', 'JS', 'HTML'],
-      imageUrl: 'https://picsum.photos/seed/exp1/800/600',
+      title: 'HUERTOHOGAR',
+      description: 'Diseño de página web para venta de productos de frutas, verduras y productos naturales.',
+      tags: ['CSS', 'JS', 'HTML', 'Visual Studio Code'],
+      imageUrl: './assets/images/HUERTOHOGAR.png',
     },
     {
       title: 'UrbanShop',
       description: 'Desarrollo de una plataforma para Android de comercio electrónico para la venta de ropa urbana.',
-      tags: ['React', 'Node.js', 'MongoDB'],
-      imageUrl: 'https://picsum.photos/seed/exp2/800/600',
+      tags: ['Android Studio', 'Kotlin'],
+      imageUrl: './assets/images/UrbanShop.png',
+    },
+    {
+      title: 'Edutech Innovator',
+      description: 'Cambio de sistema monolítico a Microservicios en EduTech Innovators SPA.',
+      tags: ['Microservicios', 'Docker', 'Postman', 'JPA', 'Spring Data', 'IntelliJ IDEA'],
+      imageUrl: './assets/images/Edutechinnovators.png',
+    },
+  ],
+  workExperience: [
+    {
+      title: 'Ayudante de contador - 21Inmobiliaria',
+      description: 'Apoyo en tareas contables y administrativas en el sector inmobiliario.',
+      tags: ['Contabilidad', 'Excel', 'Gestión'],
+    },
+    {
+      title: 'Contador general - LegalCont SPA',
+      description: 'Responsable de la gestion de la contabilidad de LegalCont SPA.',
+      tags: ['Contabilidad', 'Administración', 'Trabajo en equipo'],
     },
   ],
   nav: [

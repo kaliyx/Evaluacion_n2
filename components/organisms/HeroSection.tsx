@@ -1,5 +1,5 @@
 import { Typography, Space, Avatar, Row, Col, Card, Tag, Divider, Tooltip, Dropdown, Button, Collapse } from 'antd';
-import { MessageOutlined, TeamOutlined, SearchOutlined, CalendarOutlined, SyncOutlined, BulbOutlined, SafetyCertificateOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { MessageOutlined, TeamOutlined, SearchOutlined, CalendarOutlined, SyncOutlined, BulbOutlined, SafetyCertificateOutlined, ThunderboltOutlined, DownloadOutlined } from '@ant-design/icons';
 import { GithubOutlined, LinkedinOutlined, GlobalOutlined, MailOutlined, TwitterOutlined } from '@ant-design/icons';
 import SocialIconLink from '../atoms/SocialIconLink';
 import { PortfolioStyles } from '../layouts/home/styles';
@@ -45,9 +45,20 @@ const HeroSection = () => (
           {portfolio.avatarUrl && (
             <Avatar size={120} src={portfolio.avatarUrl} alt={portfolio.name} />
           )}
-          <div>
+          <div style={{ textAlign: 'center' }}>
             <Title level={2} style={{ marginBottom: 0 }}>{portfolio.name}</Title>
-            <Text type="secondary">{portfolio.role}</Text>
+            <Space>
+              <Text type="secondary">{portfolio.role}</Text>
+              <Button 
+                type="link" 
+                icon={<DownloadOutlined />} 
+                href="/cv/CurriculumVitae.pdf" 
+                download="CurriculumVitae.pdf"
+                size="small"
+              >
+                Descargar CV
+              </Button>
+            </Space>
           </div>
           <Paragraph style={{ maxWidth: 720, margin: '0 auto' }}>{portfolio.bio}</Paragraph>
           <Space size="middle">

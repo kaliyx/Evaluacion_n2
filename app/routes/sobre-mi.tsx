@@ -1,6 +1,6 @@
 import type { Route } from "./+types/sobre-mi";
-import { Layout, Typography, Space, Avatar, Row, Col, Card } from 'antd';
-import { MailOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
+import { Layout, Typography, Space, Avatar, Row, Col, Card, Button } from 'antd';
+import { MailOutlined, GithubOutlined, LinkedinOutlined, DownloadOutlined } from '@ant-design/icons';
 import AppHeader from '../../components/organisms/AppHeader';
 import AppFooter from '../../components/organisms/AppFooter';
 import { portfolio } from '../data/portfolio';
@@ -29,7 +29,18 @@ export default function SobreMi() {
             
             <div style={{ textAlign: 'center' }}>
               <Title level={2} style={{ marginBottom: 8 }}>{portfolio.name}</Title>
-              <Text type="secondary" style={{ fontSize: '18px' }}>{portfolio.role}</Text>
+              <Space direction="vertical" size={8}>
+                <Text type="secondary" style={{ fontSize: '18px' }}>{portfolio.role}</Text>
+                <Button 
+                  type="primary" 
+                  icon={<DownloadOutlined />} 
+                  href="/cv/CurriculumVitae.pdf" 
+                  download="CurriculumVitae.pdf"
+                  size="middle"
+                >
+                  Descargar Curriculum
+                </Button>
+              </Space>
             </div>
 
             <div style={{ width: '100%' }}>
@@ -48,18 +59,30 @@ export default function SobreMi() {
                 <Paragraph>
                   <strong>Ingeniería en Informática</strong> - DuocUC San Joaquín (En curso)
                 </Paragraph>
+                <Paragraph>
+                  <strong>Fundamento en Python 1</strong> {' - '}
+                  <Button
+                    type="link"
+                    icon={<DownloadOutlined />}
+                    href="/cv/Python_Essentials_1_certificate_isra-poblete-duocuc-cl_b6f23125-4f34-44cf-bb28-b3f44e99d3a1.pdf"
+                    download
+                    size="small"
+                  >
+                    Descargar Certificado
+                  </Button>
+                </Paragraph>
               </Card>
             </div>
 
             <div style={{ width: '100%' }}>
               <Title level={3} style={{ marginTop: 32, marginBottom: 16 }}>Experiencia Laboral</Title>
               <Row gutter={[16, 16]}>
-                {portfolio.projects.map((exp) => (
+                {portfolio.workExperience.map((exp) => (
                   <Col key={exp.title} xs={24} md={12}>
                     <Card title={exp.title}>
                       <Paragraph>{exp.description}</Paragraph>
                       <Space wrap>
-                        {exp.tags.map(tag => (
+                        {exp.tags.map((tag: string) => (
                           <Text key={tag} type="secondary">{tag}</Text>
                         ))}
                       </Space>
