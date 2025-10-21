@@ -7,9 +7,15 @@ interface SocialIconLinkProps extends ButtonProps {
   icon: React.ReactNode;
 }
 
+
 const SocialIconLink: React.FC<SocialIconLinkProps> = ({ href, icon, ...props }) => {
+  const isMailto = href.startsWith('mailto:');
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a
+      href={href}
+      target={isMailto ? undefined : '_blank'}
+      rel={isMailto ? undefined : 'noopener noreferrer'}
+    >
       <Button type="text" shape="circle" icon={icon} size="large" {...props} />
     </a>
   );
