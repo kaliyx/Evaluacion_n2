@@ -1,5 +1,6 @@
+import React from 'react';
 import type { Route } from "./+types/contacto";
-import { Layout, Typography, Form, Input, Button, Space, Row, Col } from 'antd';
+import { Layout, Typography, Form, Input, Button, Space, Row, Col, message } from 'antd';
 import { MailOutlined, GithubOutlined, LinkedinOutlined, WhatsAppOutlined } from '@ant-design/icons';
 import AppHeader from '../../components/organisms/AppHeader';
 import AppFooter from '../../components/organisms/AppFooter';
@@ -19,11 +20,58 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Contacto() {
   const [form] = Form.useForm();
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log('Form values:', values);
-    // Aquí puedes integrar con un servicio de email o backend
-    alert('Mensaje enviado (demo). Integra con tu backend.');
+    // Si existe la variable de entorno VITE_FORMSPREE_ENDPOINT, enviaremos allí
+    const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+    const maillink = portfolio.socials.find(s => s.icon === 'mail')?.href || '';
+
+    if (!endpoint) {
+      // Fallback: abrir cliente de correo con mailto
+      message.info('Abriendo cliente de correo...');
+      // maillink ya contiene mailto: con subject/body en portfolio
+      const body = encodeURIComponent(`Nombre: ${values.nombre}\nCorreo: ${values.correo}\n\n${values.mensaje}`);
+      // Si mailto proporcionado tiene body/subject, solo abrirlo; si no, crear uno
+      let mailto = maillink;
+      if (!mailto.startsWith('mailto:')) {
+        const email = maillink.replace(/^mailto:/, '').split('?')[0] || '';
+        mailto = `mailto:${email}?subject=${encodeURIComponent('Contacto desde portafolio')}&body=${body}`;
+      } else {
+        // Si ya es mailto, intentar añadir body si no existe
+        if (!mailto.includes('body=')) {
+          mailto = `${mailto}${mailto.includes('?') ? '&' : '?'}body=${body}`;
+        }
+      }
+      window.location.href = mailto;
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const payload = {
+        name: values.nombre,
+        email: values.correo,
+        message: values.mensaje,
+      };
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error(`Error ${res.status}`);
+
+      message.success('Mensaje enviado correctamente. Gracias!');
+      form.resetFields();
+    } catch (err) {
+      console.error('Send error:', err);
+      message.error('Error al enviar el mensaje. Intenta nuevamente más tarde.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -69,7 +117,7 @@ export default function Contacto() {
                 </Form.Item>
 
                 <Form.Item style={{ textAlign: 'right' }}>
-                  <Button type="primary" htmlType="submit" size="large">
+                  <Button type="primary" htmlType="submit" size="large" loading={loading}>
                     Enviar mensaje
                   </Button>
                 </Form.Item>

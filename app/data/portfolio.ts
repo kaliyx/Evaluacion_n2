@@ -53,6 +53,7 @@ export const portfolio: Portfolio = {
       description: 'Diseño de página web para venta de productos de frutas, verduras y productos naturales.',
       tags: ['CSS', 'JS', 'HTML', 'Visual Studio Code'],
       imageUrl: './assets/images/HUERTOHOGAR.png',
+      repoUrl: 'https://github.com/kaliyx/HuertoHogar.git',
     },
     {
       title: 'UrbanShop',
