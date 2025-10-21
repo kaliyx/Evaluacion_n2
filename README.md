@@ -6,13 +6,6 @@ A modern, production-ready template for building full-stack React applications u
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
 
 ## Getting Started
 
@@ -33,6 +26,21 @@ npm run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
+
+## Arquitectura Atomic Design
+
+Este proyecto sigue la estructura de Atomic Design:
+
+- Átomos: `components/atoms/*`
+- Moléculas: `components/molecules/*`
+- Organismos: `components/organisms/*`
+- Layouts: `components/layouts/*` (antes `components/templates/*`)
+- Páginas: `app/routes/*` (cada archivo de ruta es una página)
+
+Notas:
+- La carpeta `components/layouts/home/*` contiene el layout de la página de inicio (`HomeLayout`) y sus estilos (`styles`).
+- Los organismos (`AppHeader`, `HeroSection`, `ProjectsSection`, `AppFooter`) usan los estilos compartidos desde `components/layouts/home/styles`.
+- Las páginas (por ejemplo `app/routes/home.tsx`, `proyectos.tsx`, `sobre-mi.tsx`, `contacto.tsx`) ensamblan Plantillas y Organismos.
 
 ## Building for Production
 
