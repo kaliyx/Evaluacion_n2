@@ -1,4 +1,4 @@
-import { Typography, Row, Col } from 'antd';
+import { Typography, Row, Col, Button, Space } from 'antd';
 import ProjectCard from '../molecules/ProjectCard';
 import { portfolio } from '../../app/data/portfolio';
 import { PortfolioStyles } from '../layouts/home/styles';
@@ -11,6 +11,13 @@ const projectsData = portfolio.projects;
 const ProjectsSection = () => (
   <div id="proyectos" style={PortfolioStyles.projectsSection}>
     <Title level={2} style={PortfolioStyles.sectionTitle}>Experiencia Laboral</Title>
+    <div style={{ textAlign: 'center', marginBottom: 24 }}>
+      <Space>
+        <Button type="primary" size="large" href="https://github.com/kaliyx/HuertoHogar.git" target="_blank" rel="noopener noreferrer">
+          HUERTOHOGAR
+        </Button>
+      </Space>
+    </div>
     <Row gutter={[32, 32]} justify="center">
       {projectsData.map((project) => (
         <Col key={project.title} xs={24} sm={24} md={12} lg={8}>
